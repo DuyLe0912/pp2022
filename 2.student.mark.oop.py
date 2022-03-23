@@ -2,24 +2,40 @@
 #Practical work 2
 class student:
     def __init__(self,id,name,dob):
-        self.id=id
-        self.name=name
-        self.dob=dob
+        self._id=id
+        self._name=name
+        self._dob=dob
+    def get_id(self):
+        return self._id
+    def get_name(self):
+        return self._name
+    def get_dob(self):
+        return self._dob
     def __str__(self):
-        return f"Student ID: {self.id}\nStudent Name: {self.name}\nStudent DOB:{self.dob}"
+        return f"Student ID: {self._id}\nStudent Name: {self._name}\nStudent DOB:{self._dob}"
 
 class course:
     def __init__(self,id,name):
-        self.id=id
-        self.name=name
+        self._id=id
+        self._name=name
+    def get_id(self):
+        return self._id
+    def get_name(self):
+        return self._name
     def __str__(self):
-        return f"Course ID: {self.id}\nCourse Name: {self.name}"
+        return f"Course ID: {self._id}\nCourse Name: {self._name}"
 
 class mark:
     def __init__(self,std_id,crs_id,grade):
-        self.std_id=std_id
-        self.crs_id=crs_id
-        self.grade=grade
+        self._std_id=std_id
+        self._crs_id=crs_id
+        self._grade=grade
+    def get_std_id(self):
+        return self._std_id
+    def get_crs_id(self):
+        return self._crs_id
+    def get_grade(self):
+        return self._grade
 
 #Lists of dictionaries
 students = []
@@ -53,12 +69,12 @@ def marking_process():
     for i in courses:
         while 1:
             crsId = input("Enter course id: ")
-            crsIDList = [crs_Id.id for crs_Id in courses]
+            crsIDList = [crs_Id.get_id() for crs_Id in courses]
             if crsId in crsIDList:
                 for j in students:
                     while 1:
                         stdID = input("Enter student id: ")
-                        stdIDList = [std_Id.id for std_Id in students]
+                        stdIDList = [std_Id.get_id() for std_Id in students]
                         if stdID in stdIDList:
                             grade = float(input("Enter mark: "))
                             mrk = mark(stdID,crsId,grade)
@@ -93,10 +109,10 @@ def displayCourses():
 def displayMarks():
     print("---------------- Mark List --------------------")
     for i in courses:
-        print(f"\tCourse ID: {i.id}")
+        print(f"\tCourse ID: {i.get_id()}")
         for k in range(0,len(marks)):
-            if(marks[k].crs_id == i.id):
-                print(f"Student ID: {marks[k].std_id}  /  Mark: {marks[k].grade}")
+            if(marks[k].get_crs_id() == i.get_id()):
+                print(f"Student ID: {marks[k].get_std_id()}  /  Mark: {marks[k].get_grade()}")
 
 #main
 print("--------- Student Mark Management --------\n")
